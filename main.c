@@ -60,8 +60,13 @@ int main(int argc, char **argv) {
   while (count--)
     list = list_make_node_t(list, random() % 1024);
 
+  node_t *end_node = list;
+  while (end_node->next && end_node) {
+    end_node = end_node->next;
+  }
+
   list_display(list);
-  quicksort(&list);
+  quicksort(&list, end_node);
   list_display(list);
 
   if (!list_is_ordered(list))
